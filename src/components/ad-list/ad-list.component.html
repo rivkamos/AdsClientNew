@@ -1,0 +1,20 @@
+<app-filter-ads (filterChange)="onFilterChange($event)"></app-filter-ads>
+
+<app-ad-form
+    [isOpen]="isModalOpen"
+    [isEditMode]="isEditMode"
+    [item]="selectedItem"
+    (closeModal)="isModalOpen = false"
+    (saveItem)="addAd($event)">
+</app-ad-form>
+
+<div class="ads-container">
+    @for(ad of filteredAds; track ad.id){
+        <app-ad-details [ad]="ad" (deleteAdEvent)="deleteAd($event)" [currentUser$]="currentUser$"></app-ad-details>
+    }
+
+    @if((currentUser$ | async) !== null)
+    {
+        <button (click)="openAddModal()">Add</button>
+    }
+</div>

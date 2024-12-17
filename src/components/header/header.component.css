@@ -1,0 +1,49 @@
+:host {
+    display: block;
+    height: 30vh; /* 30% of the viewport height */
+    background-image: url('../../assets/maps.jpg');
+    background-size: cover;   /* Cover the entire header */
+    background-position: center; /* Center the background image */
+    /* color: white;  */
+    text-align: center; /* Center text within the header */
+    padding: 10px;
+    width: 100%;
+}
+
+.map-container {
+    position: relative;
+    height: calc(30vh); /* Adjusted height for the map container */
+    width: 100%; /* Full width */
+    /* background-image: url('../../assets/maps.jpg'); */
+    background-size: cover;
+    background-position: center;
+}
+  
+.overlay {
+    position: absolute;
+    top: 50%; /* Move to the vertical center */
+    left: 50%; /* Move to the horizontal center */
+    transform: translate(-50%, -50%); /* Center the overlay */
+    width: 70%; /* Set the width of the overlay */
+    height: 60%; /* Adjust height as needed */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(255, 255, 255, 0.7); 
+    padding: 20px; /* Padding for text */
+}
+
+.left-text {
+    flex: 1; 
+}
+.right-text {
+    flex: 0 0 40%; /* Set a fixed width for the right text */
+    max-width: 40%; /* Prevent it from exceeding 40% of the overlay */
+    word-wrap: break-word; /* Allow long words to break onto the next line */
+    text-align: center; /* Align text to the left */
+}
+.divider {
+    width: 2px; /* Divider line width */
+    background-color: black; /* Divider color */
+    height: 50%; /* Divider height */
+}

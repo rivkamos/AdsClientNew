@@ -1,0 +1,31 @@
+.ad-card {
+    border: 1px solid #ccc; /* Optional border for the ad card */
+    padding: 10px; /* Optional padding */
+}
+
+.ad-header {
+    height: 15px; /* Set a fixed height for the header */
+    background-color: #f0f0f0; /* Optional background color for visibility */
+    border-bottom: 1px solid #ccc; /* Optional bottom border */
+    margin-bottom: 10px; /* Space below the header */
+}
+
+.ad-type-location {
+    display: flex; /* Use Flexbox for layout */
+    justify-content: space-between; /* Space between items */
+    align-items: center; /* Center items vertically */
+    margin-bottom: 10px; /* Space below the type-location container */
+}
+
+.ad-type {
+    color: gray; /* Gray color for the type */
+}
+
+.ad-location {
+    color: black; /* Default color for location */
+}
+
+.ad-image {
+    width: 100%; /* Make image responsive */
+    height: auto; /* Maintain aspect ratio */
+}

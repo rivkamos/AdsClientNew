@@ -1,0 +1,25 @@
+.filter-control {
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    /* Semi-transparent background */
+    width: 100%;
+    /* Full width */
+    text-align: center;
+    /* Center the input */
+}
+
+.filter-control input {
+    width: 80%;
+    /* Input field width */
+    padding: 10px;
+    font-size: 16px;
+    /* Font size for input */
+}
+
+.btn-filter {
+    background-color: orange;
+    border: none;
+    padding: 10px;
+    margin-left: 5px;
+    cursor: pointer;
+}

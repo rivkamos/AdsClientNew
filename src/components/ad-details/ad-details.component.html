@@ -1,0 +1,18 @@
+<div class="ad-card">
+    <div class="ad-header" [appAdTypeColor]="ad.type"></div>
+    <div class="ad-type-location">
+        <span class="ad-type">{{ad.type | adType}}</span> <!-- Type on the left -->
+        <span class="ad-location">{{ad.location?.city}}, {{ad.location?.area}}</span> <!-- Location on the right -->
+    </div>
+    <h3>{{ad.title}}</h3>
+    <img [src]="ad.imageAdUrl" alt="{{ad.title}}" class="ad-image" />
+    <p>{{ad.description}}</p>
+    <p>Posted on: {{ad.postedDate | date}}</p>
+    <p>Likes: {{ad.likes}}</p>
+
+    @if((currentUser$ | async)?.id == ad.creatorId)
+    {
+        <button (click)="updateAd()">Edit</button>
+        <button (click)="deleteAd()">Delete</button>
+    }
+</div>

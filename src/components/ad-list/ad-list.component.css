@@ -1,0 +1,10 @@
+/* .ads-container {
+    display: flex;
+    flex-wrap: wrap; 
+} */
+
+.ads-container {
+    display: grid; /* Enable Grid layout */
+    grid-template-columns: repeat(4, 1fr); /* Create 4 equal columns */
+    gap: 10px; /* Optional gap between ads */
+}
