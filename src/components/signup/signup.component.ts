@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../models/user.model';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -21,13 +21,15 @@ export class SignupComponent {
   user: User = new User();
   errorMessage: string;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,
+    private dialogRef: MatDialogRef<SignupComponent>) {}
 
   signup() {
     this.authService.signup(this.user)
       .subscribe({
         next: (response) => {
           console.log('Signup successful:', response);
+          this.dialogRef.close();
         },
         error: (error) => {
           this.errorMessage = 'Signup failed: ' + error.message;

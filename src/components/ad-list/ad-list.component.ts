@@ -79,35 +79,58 @@ export class AdListComponent implements OnInit, OnDestroy {
 
   addAd(newAd: Ad): void {
     if (this.authService.isLoggedIn()) {
-      this.ads.push(newAd);
-      this.filteredAds = [...this.ads]; 
+      this.adService.addAd(newAd).subscribe(
+        (ad: Ad) => {
+          this.ads.push(ad);
+          this.filteredAds = [...this.ads];
+        },
+        error => {
+          alert('Error adding ad: ' + error.message);
+        }
+      );
     } else {
       alert('You must be logged in to add an ad.');
     }
   }
 
-  deleteAd(ad: any): void {
+
+  deleteAd(ad: Ad): void {
     this.currentUser$.subscribe(user => {
       if (user && user.id === ad.creatorId) {
-        this.ads = this.ads.filter(a => a.id !== ad.id);
-        this.filteredAds = [...this.ads]; // Refresh the filtered ads
+        this.adService.deleteAd(ad.id).subscribe(
+          () => {
+            this.ads = this.ads.filter(a => a.id !== ad.id);
+            this.filteredAds = [...this.ads]; // Refresh the filtered ads
+          },
+          error => {
+            alert('Error deleting ad: ' + error.message);
+          }
+        );
       } else {
         alert('You do not have permission to delete this ad.');
       }
     });
   }
-
+  
   updateAd(updatedAd: Ad): void {
     this.currentUser$.subscribe(user => {
       if (user && user.id === updatedAd.creatorId) {
-        const index = this.ads.findIndex(a => a.id === updatedAd.id);
-        if (index !== -1) {
-          this.ads[index] = updatedAd;
-          this.filteredAds = [...this.ads]; // Refresh the filtered ads
-        }
+        this.adService.editAd(updatedAd).subscribe(
+          () => {
+            const index = this.ads.findIndex(a => a.id === updatedAd.id);
+            if (index !== -1) {
+              this.ads[index] = updatedAd; // Update the local ads array
+              this.filteredAds = [...this.ads]; // Refresh the filtered ads
+            }
+          },
+          error => {
+            alert('Error updating ad: ' + error.message);
+          }
+        );
       } else {
         alert('You do not have permission to update this ad.');
       }
     });
   }
+  
 }

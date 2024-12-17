@@ -25,7 +25,14 @@ export class AuthService {
   }
 
   signup(user: User): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/signup`, user);
+    return this.http.post<any>(`${this.apiUrl}/signup`, user).pipe(
+        tap(response => {
+          if (response.token) {
+            this.storeToken(response.token); 
+            this.setCurrentUser(response.user); 
+          }
+        })
+      );
   }
 
   logout(): void {
